@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pleng</title>
+  <style>
+    body {
+      font-family: 'Kanit', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 2rem;
+      margin: 0;
+      background: linear-gradient(135deg, #ffe6f0, #ffe0f0);
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #d63384;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    button {
+      background-color: #ff66a3;
+      color: white;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 15px;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 300px;
+    }
+
+    button:hover {
+      background-color: #ff3385;
+      transform: scale(1.05);
+    }
+
+    #message {
+      margin-top: 2rem;
+      font-size: 1.5rem;
+      color: #ff4081;
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .heart {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 3s linear forwards;
+    }
+
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -7.5px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -7.5px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-200px) scale(1.5);
+      }
+    }
+
+    /* Responsive text size for small screens */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      #message {
+        font-size: 1.2rem;
+      }
+
+      button {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>บลูอยากบอกหนูว่า...</h1>
+  <button onclick="confessLove()">Click</button>
+  <div id="message"></div>
+
+  <script>
+    function confessLove() {
+      const message = document.getElementById('message');
+      message.textContent = "บลูรักหนูมากๆครับ💖";
+
+      // สร้างหัวใจลอยขึ้น
+      for (let i = 0; i < 20; i++) {
+        createHeart();
+      }
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.top = "100vh";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 3000);
+    }
+  </script>
+</body>
+</html>
